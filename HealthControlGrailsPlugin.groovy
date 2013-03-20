@@ -4,7 +4,7 @@ import com.developerb.healthcontrol.HealthControlRepository
 
 class HealthControlGrailsPlugin {
 
-    def version = "0.2"
+    def version = "0.3-frontlinesms-SNAPSHOT"
     def grailsVersion = "2.0 > *"
 
     def pluginExcludes = [
