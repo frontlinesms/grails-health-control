@@ -9,7 +9,6 @@ import static org.apache.commons.io.FileUtils.byteCountToDisplaySize
  * @author Kim A. Betti <kim@developer-b.com>
  */
 class DiskSpaceHealthControl implements HealthControl {
-
     static final int limitMb = 500
 
     String name = "Available disk space"
@@ -17,31 +16,25 @@ class DiskSpaceHealthControl implements HealthControl {
     Long timeoutMillis = 500
 
     StateOfHealth execute() {
-        def props = [:]
         def message = "Enough usable space on all file systems"
         def level = HEALTHY
 
-        getFileSystem().fileStores.each {
+        def usableSpaceMap = fileStores.collectEntries {
             def usableMb = Math.round(it.usableSpace / 1000 / 1000)
-            props[it.name()] = usableMb + " MB"
 
             if (usableMb < limitMb) {
                 message = "At least one filesystem running low on usable space.."
                 level = FRAIL
             }
+
+            [ it.absolutePath, byteCountToDisplaySize(it.usableSpace) ]
         }
 
-        return new StateOfHealth(level, message, mapUsableSpaceOnFileSystems())
+        return new StateOfHealth(level, message, usableSpaceMap)
     }
 
-    private static Map mapUsableSpaceOnFileSystems() {
-        return getFileSystem().fileStores.collectEntries {
-            [ it.name(), byteCountToDisplaySize(it.usableSpace) ]
-        }
-    }
-
-    private getFileSystem() {
-        Class.forName('java.nio.file.FileSystems').default
+    private static File[] getFileStores() {
+        File.listRoots()
     }
 }
 
