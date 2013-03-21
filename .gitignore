@@ -14,6 +14,7 @@ out/
 .project
 .settings
 *.swp
+*.orig
 
 # Not needed..?
 grails-app/conf/DataSource.groovy
