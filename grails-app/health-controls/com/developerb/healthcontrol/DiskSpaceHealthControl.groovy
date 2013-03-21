@@ -19,22 +19,17 @@ class DiskSpaceHealthControl implements HealthControl {
         def message = "Enough usable space on all file systems"
         def level = HEALTHY
 
-        def usableSpaceMap = fileStores.collectEntries {
+        def usableSpaceMap = File.listRoots().collectEntries {
             def usableMb = Math.round(it.usableSpace / 1000 / 1000)
 
             if (usableMb < limitMb) {
                 message = "At least one filesystem running low on usable space.."
                 level = FRAIL
             }
-
             [ it.absolutePath, byteCountToDisplaySize(it.usableSpace) ]
         }
 
         return new StateOfHealth(level, message, usableSpaceMap)
-    }
-
-    private static File[] getFileStores() {
-        File.listRoots()
     }
 }
 
