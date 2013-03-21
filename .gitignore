@@ -13,6 +13,7 @@ out/
 .classpath
 .project
 .settings
+*.swp
 
 # Not needed..?
 grails-app/conf/DataSource.groovy
