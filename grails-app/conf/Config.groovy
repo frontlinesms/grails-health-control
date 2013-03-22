@@ -38,6 +38,7 @@ grails.mime.types = [
 healthControl {
     requireSecret = true
     secret = "my-secret"
+    deadStatus = 500
 }
 
 grails.views.default.codec="none" // none, html, base64
