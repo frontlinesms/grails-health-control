@@ -31,7 +31,11 @@ The health of whatever is being monitored can be "healthy", "frail" or "dead".
 Http status codes
 -----------------
 
-The endpoint will return with a http `200 Ok` response if all checks are okay or fragile, `501 Not Implemented` if no health controls are implemented and finally `500 Internal Service Error` if one or more health controls fails or returns the `dead` code.
+The endpoint will return with:
+
+* a http `200 Ok` response if all checks are okay or fragile,
+* `501 Not Implemented` if no health controls are implemented and finally
+* `500 Internal Service Error` if one or more health controls fails or returns the `dead` code.  This status can be reconfigured via `healthControl.deadStatus` in `Config.groovy`
 
 
 Content negotiation - Alternative data formats

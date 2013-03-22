@@ -35,7 +35,7 @@ class HealthControlController {
         def appName = grailsApplication.metadata.get("app.name")
 
         if (reports.any { it.level == DEAD }) {
-            response.status = 500
+            response.status = grailsApplication.config.healthControl.deadStatus?: 500
         }
 
         def data = [
@@ -70,5 +70,4 @@ class HealthControlController {
             ]
         }
     }
-
 }
