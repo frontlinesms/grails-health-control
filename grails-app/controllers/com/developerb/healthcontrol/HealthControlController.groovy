@@ -16,7 +16,7 @@ class HealthControlController {
 
 
     def beforeInterceptor = {
-        if(grailsApplication.config.healthControl.requireSecret) {
+        if(isSecretRequired()) {
             def providedSecret = request.getParameter("secret")
             if (providedSecret != grailsApplication.config.healthControl.secret) {
                 response.status = 401
@@ -69,5 +69,10 @@ class HealthControlController {
                 props: report.stateOfHealth.properties
             ]
         }
+    }
+
+    private boolean isSecretRequired() {
+        def req = grailsApplication.config.healthControl.requireSecret
+        return req instanceof Boolean? req: true
     }
 }
