@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xmlns='http://maven.apache.org/POM/4.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd'>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.grails.plugins</groupId>
+  <artifactId>health-control</artifactId>
+  <packaging>zip</packaging>
+  <version>frontlinesms-0.4</version>
+  <name>Health Control</name>
+  <description>Automated control of services, resources and other things that might fail from time to time.</description>
+  <url>http://grails.org/plugin/health-control</url>
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <organization>
+    <name>Developer-B</name>
+    <url>http://www.developer-b.com/</url>
+  </organization>
+  <developers>
+    <developer>
+      <name>Kim A. Betti</name>
+      <email>kim@developer-b.com</email>
+    </developer>
+  </developers>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>http://github.com/kimble/grails-health-control/issues</url>
+  </issueManagement>
+  <scm>
+    <url>http://github.com/kimble/grails-health-control/</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>org.grails.plugins</groupId>
+      <artifactId>resources</artifactId>
+      <version>1.2.RC2</version>
+      <type>zip</type>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xmlParserAPIs</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>xerces</groupId>
+          <artifactId>xmlParserAPIs</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+</project>
